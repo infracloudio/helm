@@ -33,7 +33,7 @@ questions:
 - variable: usedrivesAndPartitions
   default: false
   description: "Should Portworx use the drives as well as partitions on the disk ?"
-  type: string
+  type: boolean
   group: "Storage Options"
   label: Use partitions ?
 - variable: journalDevice
@@ -82,6 +82,7 @@ questions:
   description: "Version of the Lighthouse GUI to be used"
   type: string
   group: "Storage Orchestration"
+  label: Lighthouse version
 
 ################################### Scheduler options ################################
 
@@ -124,22 +125,27 @@ questions:
   description: "Username and password for ETCD authentication in the form user:password"
   type: string
   group: "kvdb Parameters"
+  label: Username and password for ETCD
 - variable: etcd.ca
   description: "Location of CA file for ETCD authentication. Should be /path/to/server.ca"
   type: string
   group: "kvdb Parameters"
+  label: ETCD CA  
 - variable: etcd.cert
   description: "Location of certificate for ETCD authentication. Should be /path/to/server.crt"
   type: string
   group: "kvdb Parameters"
+  label: ETCD cert file
 - variable: etcd.key
   description: "Location of certificate key for ETCD authentication Should be /path/to/servery.key"
   type: string
   group: "kvdb Parameters"
+  label: ETCD certificate Key
 - variable: consul.acl
   description: "ACL token value used for Consul authentication. (example: 398073a8-5091-4d9c-871a-bbbeb030d1f6)"
   type: string
   group: "kvdb Parameters"
+  label: Consul ACL Token
 
 ################################### KVDB options ################################
 
