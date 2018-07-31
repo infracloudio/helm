@@ -1,9 +1,10 @@
 questions:
+################################### Portworx required params #########################
 - variable: imageVersion
   default: "1.4.2"
   description: "The Portworx image version to be used while deploying"
   type: string
-  label: Portworx version to be deployed.
+  label: Portworx version
   group: "Required Parameters"
 - variable: etcdEndPoint
   description: "Points to your key value database, such as an etcd cluster or a consul cluster. (example: etcd:http://etcd-1.com.net:2379,etcd:http://etcd-2.com.net:2379,etcd:http://etcd-3.com.net:2379)"
@@ -11,91 +12,114 @@ questions:
   label: KVDB Endpoint address
   required: true
   group: "Required Parameters"
-- variable: internalKVDB
-  description: "Select if you wish to run internal kvdb. Note internal kvdb is in beta. DO NOT enable internal kvdb when running with KOPS. The kvdb endpoints provided above will be ignored. (example: true)"
-  type: boolean
-  label: Enable Internal KVDB store
-  required: false
-  group: "Required Parameters"
 - variable: clusterName
   description: "Name of the Portworx Cluster"
   type: string
   label: Portworx cluster name
   required: true
   group: "Required Parameters"
+################################### Storage Options ################################
 - variable: drives
   description: "Specify semi-colon separated list of drives. (example:/dev/sdb;/dev/sdc or type=gp2;size=100)"
   type: string
-  group: "Optional Parameters"
-- variable: dataInterface
-  description: "Specify data network interface. This is useful if your instances have non-standard network interfaces. (example: eth1)"
-  type: string
-  group: "Optional Parameters"
-- variable: managementInterface
-  description: "Specify data network interface. This is useful if your instances have non-standard network interfaces. (example: eth1)"
-  type: string
-  group: "Optional Parameters"
+  group: "Storage Options"
+  label: List of drives (semi-colon seperated if multiple)
 - variable: usefileSystemDrive
   default: false
   description: "Should Portworx use an unmounted drive even with a filesystem ?"
   type: boolean
-  group: "Optional Parameters"
+  group: "Storage Options"
+  label: Use drives with a filesystem ?
 - variable: usedrivesAndPartitions
   default: false
   description: "Should Portworx use the drives as well as partitions on the disk ?"
   type: string
-  group: "Optional Parameters"
+  group: "Storage Options"
+  label: Use partitions ?
+- variable: journalDevice
+  description: "Journal device for Portworx metadata"
+  type: string
+  group: "Storage Options"
+  label: Journal device
+################################### Network Interface Options ################################
+- variable: dataInterface
+  description: "Specify data network interface. This is useful if your instances have non-standard network interfaces. (example: eth1)"
+  type: string
+  group: "Network Options"
+  label: "Data interface"
+- variable: managementInterface
+  description: "Specify data network interface. This is useful if your instances have non-standard network interfaces. (example: eth1)"
+  type: string
+  group: "Network Options"
+  label: Management interface
+################################### Environment variables ################################
 - variable: envVars
   description: "semi-colon-separated list of environment variables that will be exported to portworx. (example: API_SERVER=http://lighthouse-new.portworx.com;MYENV1=val1;MYENV2=val2)"
   type: string
-  group: "Optional Parameters"
+  group: "env variables"
+  label: Environment Variables
+################################### Storage Orchestration and GUI ################################
 - variable: stork
   default: true
   description: "Enable Storage orchestration for hyperconvergence"
+  label: Enable Stork ?
   type: boolean
-  group: "Optional Parameters"
+  group: "Storage Orchestration"
 - variable: storkVersion
   default: "1.1.3"
   description: "Version of stork to be used"
   type: string
-  group: "Optional Parameters"
+  group: "Storage Orchestration"
+  label: Stork version
 - variable: lighthouse
   default: false
   description: "Enable Lighthouse GUI"
+  label: Enable Lighthouse ?
   type: boolean
-  group: "Optional Parameters"
+  group: "Storage Orchestration"
 - variable: lighthouseVersion
   default: "1.4.0"
   description: "Version of the Lighthouse GUI to be used"
   type: string
-  group: "Optional Parameters"
+  group: "Storage Orchestration"
+
+################################### Scheduler options ################################
+
 - variable: openshiftInstall
   default: false
   description: "Select if installing on RHEL Openshift. Please note that you will require RHEL account, and must specify docker-registry secret. (example: true)"
   type: boolean
-  group: "Optional Parameters"
+  label: Deploy on Openshift ?
+  group: "Schedulers"
 - variable: pksInstall
   default: false
   description: "Select if installing on Pivotal Container service. (example: true)"
   type: boolean
-  group: "Optional Parameters"
+  label: Deploy on PKS (Pivotal Container service) ?
+  group: "Schedulers"
 - variable: AKSorEKSInstall
   default: false
   description: "Select if installing on Amazon Elastic Container Service for Kubernetes (EKS) or Azure Kubernetes Service (AKS). (example: true)"
   type: boolean
-  group: "Optional Parameters"
+  label: Deploy on AKS or EKS ?
+  group: "Schedulers"
+
+################################### Registry options ################################
+
 - variable: registrySecret
   description: "Specify a custom Kubernetes secret that will be used to authenticate with a container registry. Must be defined in kube-system namespace. (example: regcred)"
   type: string
-  group: "Optional Parameters"
+  label: Registry secret
+  group: "Registry parameters"
 - variable: customRegistryURL
   description: "Specify a custom Kubernetes secret that will be used to authenticate with a container registry. Must be defined in kube-system namespace. (example: regcred)"
   type: string
-  group: "Optional Parameters"
-- variable: journalDevice
-  description: "Journal device for Portworx metadata"
-  type: string
-  group: "Optional Parameters"
+  label: Custom Registry URL
+  group: "Registry parameters"
+
+################################### KVDB options ################################
+
+
 - variable: etcd.credentials
   description: "Username and password for ETCD authentication in the form user:password"
   type: string
@@ -116,3 +140,18 @@ questions:
   description: "ACL token value used for Consul authentication. (example: 398073a8-5091-4d9c-871a-bbbeb030d1f6)"
   type: string
   group: "kvdb Parameters"
+
+################################### KVDB options ################################
+
+- variable: internalKVDB
+  description: "Select if you wish to run internal kvdb. Note internal kvdb is in beta. DO NOT enable internal kvdb when running with KOPS. The kvdb endpoints provided above will be ignored. (example: true)"
+  type: boolean
+  label: Enable Internal KVDB store
+  required: false
+  group: "Tech Preview"
+- variable: csi
+  description: "Select if you wish to run internal kvdb. Note internal kvdb is in beta. DO NOT enable internal kvdb when running with KOPS. The kvdb endpoints provided above will be ignored. (example: true)"
+  type: boolean
+  label: Enable csi
+  required: false
+  group: "Tech Preview"
