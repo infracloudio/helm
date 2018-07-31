@@ -24,7 +24,7 @@ questions:
   required: true
   group: "Required Parameters"
 - variable: drives
-  description: "Specify semi-colon separated list of drives. (example:/dev/sdb;/dev/sdc or "type=gp2;size=100")"
+  description: "Specify semi-colon separated list of drives. (example:/dev/sdb;/dev/sdc or type=gp2;size=100)"
   type: string
   group: "Optional Parameters"
 - variable: dataInterface
