@@ -12,21 +12,18 @@ questions:
   required: true
   show_if: "internalKVDB=false"
   group: "Required Parameters"
-
 - variable: internalKVDB
   description: "Select if you wish to run internal kvdb. Note internal kvdb is in beta. DO NOT enable internal kvdb when running with KOPS. The kvdb endpoints provided above will be ignored. (example: true)"
   type: boolean
   label: Enable Internal KVDB store
   required: false
   group: "Required Parameters"
-
 - variable: clusterName
   description: "Name of the Portworx Cluster"
   type: string
   label: Portworx cluster name
   required: true
   group: "Required Parameters"
-
 - variable: drives
   description: "Specify semi-colon separated list of drives. (example:/dev/sdb;/dev/sdc or "type=gp2;size=100")"
   type: string
@@ -39,7 +36,6 @@ questions:
   description: "Specify data network interface. This is useful if your instances have non-standard network interfaces. (example: eth1)"
   type: string
   group: "Optional Parameters"
-
 - variable: usefileSystemDrive
   default: false
   description: "Should Portworx use an unmounted drive even with a filesystem ?"
@@ -74,7 +70,6 @@ questions:
   description: "Version of the Lighthouse GUI to be used"
   type: string
   group: "Optional Parameters"
-
 - variable: openshiftInstall
   default: false
   description: "Select if installing on RHEL Openshift. Please note that you will require RHEL account, and must specify docker-registry secret. (example: true)"
@@ -90,7 +85,6 @@ questions:
   description: "Select if installing on Amazon Elastic Container Service for Kubernetes (EKS) or Azure Kubernetes Service (AKS). (example: true)"
   type: boolean
   group: "Optional Parameters"
-
 - variable: registrySecret
   description: "Specify a custom Kubernetes secret that will be used to authenticate with a container registry. Must be defined in kube-system namespace. (example: regcred)"
   type: string
@@ -99,12 +93,10 @@ questions:
   description: "Specify a custom Kubernetes secret that will be used to authenticate with a container registry. Must be defined in kube-system namespace. (example: regcred)"
   type: string
   group: "Optional Parameters"
-
 - variable: journalDevice
   description: "Journal device for Portworx metadata"
   type: string
   group: "Optional Parameters"
-
 - variable: etcd.credentials
   description: "Username and password for ETCD authentication in the form user:password"
   type: string
@@ -125,4 +117,3 @@ questions:
   description: "ACL token value used for Consul authentication. (example: 398073a8-5091-4d9c-871a-bbbeb030d1f6)"
   type: string
   group: "kvdb Parameters"
-
