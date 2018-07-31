@@ -1,0 +1,128 @@
+questions:
+- variable: imageVersion
+  default: "1.4.2"
+  description: "The Portworx image version to be used while deploying"
+  type: string
+  label: Portworx version to be deployed.
+  group: "Required Parameters"
+- variable: etcdEndPoint
+  description: "Points to your key value database, such as an etcd cluster or a consul cluster. (example: etcd:http://etcd-1.com.net:2379,etcd:http://etcd-2.com.net:2379,etcd:http://etcd-3.com.net:2379)"
+  type: string
+  label: KVDB Endpoint address
+  required: true
+  show_if: "internalKVDB=false"
+  group: "Required Parameters"
+
+- variable: internalKVDB
+  description: "Select if you wish to run internal kvdb. Note internal kvdb is in beta. DO NOT enable internal kvdb when running with KOPS. The kvdb endpoints provided above will be ignored. (example: true)"
+  type: boolean
+  label: Enable Internal KVDB store
+  required: false
+  group: "Required Parameters"
+
+- variable: clusterName
+  description: "Name of the Portworx Cluster"
+  type: string
+  label: Portworx cluster name
+  required: true
+  group: "Required Parameters"
+
+- variable: drives
+  description: "Specify semi-colon separated list of drives. (example:/dev/sdb;/dev/sdc or "type=gp2;size=100")"
+  type: string
+  group: "Optional Parameters"
+- variable: dataInterface
+  description: "Specify data network interface. This is useful if your instances have non-standard network interfaces. (example: eth1)"
+  type: string
+  group: "Optional Parameters"
+- variable: managementInterface
+  description: "Specify data network interface. This is useful if your instances have non-standard network interfaces. (example: eth1)"
+  type: string
+  group: "Optional Parameters"
+
+- variable: usefileSystemDrive
+  default: false
+  description: "Should Portworx use an unmounted drive even with a filesystem ?"
+  type: boolean
+  group: "Optional Parameters"
+- variable: usedrivesAndPartitions
+  default: false
+  description: "Should Portworx use the drives as well as partitions on the disk ?"
+  type: string
+  group: "Optional Parameters"
+- variable: envVars
+  description: "semi-colon-separated list of environment variables that will be exported to portworx. (example: API_SERVER=http://lighthouse-new.portworx.com;MYENV1=val1;MYENV2=val2)"
+  type: string
+  group: "Optional Parameters"
+- variable: stork
+  default: true
+  description: "Enable Storage orchestration for hyperconvergence"
+  type: boolean
+  group: "Optional Parameters"
+- variable: storkVersion
+  default: "1.1.3"
+  description: "Version of stork to be used"
+  type: string
+  group: "Optional Parameters"
+- variable: lighthouse
+  default: false
+  description: "Enable Lighthouse GUI"
+  type: boolean
+  group: "Optional Parameters"
+- variable: lighthouseVersion
+  default: "1.4.0"
+  description: "Version of the Lighthouse GUI to be used"
+  type: string
+  group: "Optional Parameters"
+
+- variable: openshiftInstall
+  default: false
+  description: "Select if installing on RHEL Openshift. Please note that you will require RHEL account, and must specify docker-registry secret. (example: true)"
+  type: boolean
+  group: "Optional Parameters"
+- variable: pksInstall
+  default: false
+  description: "Select if installing on Pivotal Container service. (example: true)"
+  type: boolean
+  group: "Optional Parameters"
+- variable: AKSorEKSInstall
+  default: false
+  description: "Select if installing on Amazon Elastic Container Service for Kubernetes (EKS) or Azure Kubernetes Service (AKS). (example: true)"
+  type: boolean
+  group: "Optional Parameters"
+
+- variable: registrySecret
+  description: "Specify a custom Kubernetes secret that will be used to authenticate with a container registry. Must be defined in kube-system namespace. (example: regcred)"
+  type: string
+  group: "Optional Parameters"
+- variable: customRegistryURL
+  description: "Specify a custom Kubernetes secret that will be used to authenticate with a container registry. Must be defined in kube-system namespace. (example: regcred)"
+  type: string
+  group: "Optional Parameters"
+
+- variable: journalDevice
+  description: "Journal device for Portworx metadata"
+  type: string
+  group: "Optional Parameters"
+
+- variable: etcd.credentials
+  description: "Username and password for ETCD authentication in the form user:password"
+  type: string
+  group: "kvdb Parameters"
+- variable: etcd.ca
+  description: "Location of CA file for ETCD authentication. Should be /path/to/server.ca"
+  type: string
+  group: "kvdb Parameters"
+- variable: etcd.cert
+  description: "Location of certificate for ETCD authentication. Should be /path/to/server.crt"
+  type: string
+  group: "kvdb Parameters"
+- variable: etcd.key
+  description: "Location of certificate key for ETCD authentication Should be /path/to/servery.key"
+  type: string
+  group: "kvdb Parameters"
+- variable: consul.acl
+  description: "ACL token value used for Consul authentication. (example: 398073a8-5091-4d9c-871a-bbbeb030d1f6)"
+  type: string
+  group: "kvdb Parameters"
+
