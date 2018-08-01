@@ -23,8 +23,10 @@
 {{- $etcdCert := .Values.etcd.cert | default "none" }}
 {{- $etcdKey := .Values.etcd.key | default "none" }}
 {{- $consulToken := .Values.consul.token | default "none" }}
-{{ $etcdEndPoints := .Values.etcdEndPoint }}
+{{- $etcdEndPoints := .Values.etcdEndPoint -}}
 
+
+#{{$etcdEndPoints}}
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
