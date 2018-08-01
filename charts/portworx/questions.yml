@@ -153,11 +153,13 @@ questions:
   description: "Select if you wish to run internal kvdb. Note internal kvdb is in beta. DO NOT enable internal kvdb when running with KOPS. The kvdb endpoints provided above will be ignored. (example: true)"
   type: boolean
   label: Enable Internal KVDB store
+  default: false
   required: false
   group: "Tech Preview"
 - variable: csi
   description: "Select if you wish to run internal kvdb. Note internal kvdb is in beta. DO NOT enable internal kvdb when running with KOPS. The kvdb endpoints provided above will be ignored. (example: true)"
   type: boolean
   label: Enable csi
+  default: false
   required: false
   group: "Tech Preview"
