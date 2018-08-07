@@ -102,9 +102,9 @@ spec:
               "-j", "{{ $journalDevice }}" ,
               {{- end -}}
   
-              {{- if not .kvdb -}}
+              {{- if not (.kvdb) -}}
                 {{- if eq $internalKVDB false -}}
-                  "{{ required "A valid ETCD url in the format etcd:http://<your-etcd-endpoint> is required. Verify that the key is correct and there isnt any typo in specifying that, also ensure it is accessible from all node of your kubernetes cluster" .etcdEndPoint}}"
+                  "{{ required "A valid ETCD url in the format etcd:http://<your-etcd-endpoint> is required. Verify that the key is correct and there isnt any typo in specifying that, also ensure it is accessible from all node of your kubernetes cluster" .kvdb}}"
                 {{- end -}}
               {{- else -}}
               "-k", 
