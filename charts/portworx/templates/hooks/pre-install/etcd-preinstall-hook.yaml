@@ -43,7 +43,7 @@ spec:
         
         {{- if  not (eq $etcdCertPath "none") }}
         command: ['/bin/bash']
-        args: ['/usr/bin/etcdStatus.sh',"{{ .Values.etcdEndPoint }}","{{.Values.etcd.ca}}","{{.Values.etcd.cert}}","{{.Values.etcd.key}}"]
+        args: ['/usr/bin/etcdStatus.sh',"{{ .Values.kvdb }}","{{.Values.etcd.ca}}","{{.Values.etcd.cert}}","{{.Values.etcd.key}}"]
         volumeMounts:
         - mountPath: /etc/pwx/etcdcerts
           name: etcdcerts
@@ -60,5 +60,5 @@ spec:
             path: client-key.pem
         {{- else}}
         command: ['/bin/bash']
-        args: ['/usr/bin/etcdStatus.sh',"{{ .Values.etcdEndPoint }}"]
+        args: ['/usr/bin/etcdStatus.sh',"{{ .Values.kvdb }}"]
         {{- end}}

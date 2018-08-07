@@ -23,7 +23,7 @@
 {{- $etcdCert := .Values.etcd.cert | default "none" }}
 {{- $etcdKey := .Values.etcd.key | default "none" }}
 {{- $consulToken := .Values.consul.token | default "none" }}
-{{- $etcdEndPoints := .Values.etcdEndPoint -}}
+{{- $etcdEndPoints := .Values.kvdb -}}
 
 
 #{{$etcdEndPoints}}
@@ -102,13 +102,13 @@ spec:
               "-j", "{{ $journalDevice }}" ,
               {{- end -}}
   
-              {{- if empty .etcdEndPoint -}}
+              {{- if not .kvdb -}}
                 {{- if eq $internalKVDB false -}}
                   "{{ required "A valid ETCD url in the format etcd:http://<your-etcd-endpoint> is required. Verify that the key is correct and there isnt any typo in specifying that, also ensure it is accessible from all node of your kubernetes cluster" .etcdEndPoint}}"
                 {{- end -}}
               {{- else -}}
               "-k", 
-              "{{ regexReplaceAllLiteral "(;)" .etcdEndPoint "," }}",                  
+              "{{ regexReplaceAllLiteral "(;)" .kvdb "," }}",                  
               {{- end -}}
 
               "-c", 

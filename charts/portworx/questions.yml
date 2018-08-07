@@ -6,7 +6,7 @@ questions:
   type: string
   label: Portworx version
   group: "Required Parameters"
-- variable: etcdEndPoint
+- variable: kvdb
   description: "Points to your key value database, such as an etcd cluster or a consul cluster. (example: etcd:http://etcd-1.com.net:2379,etcd:http://etcd-2.com.net:2379,etcd:http://etcd-3.com.net:2379)"
   type: string
   label: KVDB Endpoint address
